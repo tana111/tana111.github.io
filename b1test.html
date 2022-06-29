@@ -75,14 +75,9 @@ asr.onresult = function(event){
     if (event.results[event.resultIndex].isFinal) { // 結果が確定（Final）のとき
 	    asr.abort(); // 音声認識を停止
 
-	    let ret = response[transcript];
+	    
         let answer;
         
-        let webpage;
-
-        
-
-
 
 
         let keys = Object.keys(response);
@@ -105,9 +100,7 @@ asr.onresult = function(event){
 
         if(typeof answer == 'undefined'){
 	        answer = "ごめんなさい。わかりません。";
-    	}else if(typeof ret == 'undefined'){
-            answer = "ごめんなさい。わかりません。";
-        }
+    	}
         
         
         output += transcript + ' => ' + answer + '<br>';
