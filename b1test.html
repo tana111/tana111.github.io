@@ -80,12 +80,7 @@ asr.onresult = function(event){
         let webpage;
         
 
-        if(typeof ret == 'undefined'){
-	        answer = "ごめんなさい。わかりません。";
-    	}else{
-            answer = ret[0];
-            webpage = ret[1];
-        }
+        
 
 
 
@@ -110,7 +105,10 @@ asr.onresult = function(event){
 
         if(typeof ret == 'undefined'){
 	        answer = "ごめんなさい。わかりません。";
-    	}
+    	}else{
+            answer = ret[0];
+            webpage = ret[1];
+        }
 	
         output += transcript + ' => ' + answer + '<br>';
 
