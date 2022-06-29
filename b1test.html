@@ -79,6 +79,17 @@ asr.onresult = function(event){
         let answer;
         let webpage;
         
+
+        if(typeof ret == 'undefined'){
+	        answer = "ごめんなさい。わかりません。";
+    	}else{
+            answer = ret[0];
+            webpage = ret[1];
+        }
+
+
+
+
         let keys = Object.keys(response);
         keys.forEach(function(key) {
             let flag = true;
@@ -99,10 +110,7 @@ asr.onresult = function(event){
 
         if(typeof ret == 'undefined'){
 	        answer = "ごめんなさい。わかりません。";
-    	}else{
-            answer = ret[0];
-            webpage = ret[1];
-        }
+    	}
 	
         output += transcript + ' => ' + answer + '<br>';
 
