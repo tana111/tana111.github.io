@@ -103,9 +103,11 @@ asr.onresult = function(event){
             }
         });
 
-        if(typeof ret == 'undefined'){
+        if(typeof answer == 'undefined'){
 	        answer = "ごめんなさい。わかりません。";
-    	}else{
+    	}else if(typeof ret == 'undefined'){
+            answer = "ごめんなさい。わかりません。";
+        }else{
             answer = ret[0];
             webpage = ret[1];
         }
