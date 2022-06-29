@@ -9,7 +9,7 @@
 <body>
 
 <h1>複数のキー（順序入れ替え可）</h1>
-<h2>33</h2>
+<h2>36</h2>
 
 <p>
 <button id="startButton">start</button>
@@ -35,11 +35,11 @@ var response = {
     "大阪,天気": "大阪の天気は雨です。",
     "明日,天気": "明日の天気は曇りだと思います",
     "明日,和歌山,天気": "明日の和歌山の天気はずばり雪です",
-    "和歌山の天気": ["和歌山県の天気予報を表示します", "https://weather.yahoo.co.jp/weather/jp/30/"],
-    "大阪の天気": ["大阪府の天気予報を表示します", "https://weather.yahoo.co.jp/weather/jp/27/"],
-    "京都の天気": ["京都府の天気予報を表示します", "https://weather.yahoo.co.jp/weather/jp/26/"],
-    "奈良の天気": ["奈良県の天気予報を表示します", "https://weather.yahoo.co.jp/weather/jp/29/"],
-    "兵庫の天気": ["兵庫県の天気予報を表示します", "https://weather.yahoo.co.jp/weather/jp/28/"]
+    "和歌山の天気": "和歌山県の天気予報です -> https://weather.yahoo.co.jp/weather/jp/30/",
+    "大阪の天気": "大阪府の天気予報です -> https://weather.yahoo.co.jp/weather/jp/27/",
+    "京都の天気": "京都府の天気予報です -> https://weather.yahoo.co.jp/weather/jp/26/",
+    "奈良の天気": "奈良県の天気予報です -> https://weather.yahoo.co.jp/weather/jp/29/",
+    "兵庫の天気": "兵庫県の天気予報です -> https://weather.yahoo.co.jp/weather/jp/28/"
 };
 
 const startButton = document.querySelector('#startButton'); // 開始ボタン
@@ -75,12 +75,9 @@ asr.onresult = function(event){
     let output_not_final = '';
     if (event.results[event.resultIndex].isFinal) { // 結果が確定（Final）のとき
 	    asr.abort(); // 音声認識を停止
-
 	    
         let answer;
         
-
-
         let keys = Object.keys(response);
         keys.forEach(function(key) {
             let flag = true;
@@ -109,10 +106,7 @@ asr.onresult = function(event){
 	    tts.text = answer;
 	    // 再生が終了（end）ときのイベントハンドラ（終了したときに実行される）
 	    tts.onend = function(event){
-            if(typeof webpage != 'undefined'){
-                location.href = webpage; // ページを移動
-            }   
-            asr.start(); // 音声認識を再開 
+	        asr.start(); // 音声認識を再開
 	    }
 	    speechSynthesis.speak(tts); // 再生
     } else { // 結果がまだ未確定のとき
