@@ -163,7 +163,7 @@ asr.onresult = function(event){
             var mina = 1;
             var maxa = 100;
             var randoma = Math.floor(Math.random() * (maxa + 1 - mina)) + mina;
-            switch(randoma % 16){
+            switch(randoma % 18){
                 case 0:
                     answer = "うーん、退屈してませんか。";
                     break;
@@ -197,6 +197,8 @@ asr.onresult = function(event){
                 case 10:
                 case 11:
                 case 12:
+                case 16:
+                case 17:
                     answer = "ちょっといいですか、ハッシュの一覧とでも言ってください";
                     break;
                 case 13:
