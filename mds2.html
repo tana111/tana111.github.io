@@ -163,9 +163,9 @@ asr.onresult = function(event){
             var mina = 1;
             var maxa = 100;
             var randoma = Math.floor(Math.random() * (maxa + 1 - mina)) + mina;
-            switch(randoma % 13){
+            switch(randoma % 16){
                 case 0:
-                    answer = "退屈してませんか。";
+                    answer = "うーん、退屈してませんか。";
                     break;
                 case 1:
                     answer = "その言葉に対する返答があるとでも思ったのですか。到底、返事はできませんよ";
@@ -189,7 +189,7 @@ asr.onresult = function(event){
                     answer = "ところで、ラッキーセブンってなぜ7がラッキーなんでしょうね。そう思いませんか";
                     break;
                 case 8:
-                    answer = "私もそう思います。はい。";
+                    answer = "私もそう思います。はい。すごーいですね。うん。";
                     break;
                 case 9:
                     answer = "あなたはその話が面白いと思っているかもしれませんが、他の人も必ず面白いと思っていると考えてはいけませんよ";
@@ -198,6 +198,11 @@ asr.onresult = function(event){
                 case 11:
                 case 12:
                     answer = "ちょっといいですか、ハッシュの一覧とでも言ってください";
+                    break;
+                case 13:
+                case 14:
+                case 15:
+                    answer = "実は私、F5を押されるとよく言動が変わるっていわれるんです。同じことを聞いても返答が変わるとかなんとか。そんなつもりはないですけど";
                     break;
             }
     	}
