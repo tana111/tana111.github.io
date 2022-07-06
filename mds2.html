@@ -21,13 +21,13 @@
 </p>
 
 <script>
-// 22時32分
+// いま
 
 var min = 1;
 var max = 100;
 var random = Math.floor(Math.random() * (max + 1 - min)) + min;
 
-System.out.println(random);
+
 var test = "大阪";
 switch (random % 4) {
     case 0:
@@ -51,6 +51,7 @@ switch (random % 2) {
         var baseball = "野球中継に限らず中途半端に終ってしまうと悲しいですよね";
         break;
 }
+var luckynumber = "あなたのラッキーナンバーは" + random + "です";
 
 
 
@@ -59,7 +60,8 @@ switch (random % 2) {
 var response = {
     "テスト": test,
     "天気": weather,
-    "野球": baseball
+    "野球": baseball.
+    "ラッキーナンバー": luckynumber
 };
 
 const startButton = document.querySelector('#startButton'); // 開始ボタン
