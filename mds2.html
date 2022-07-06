@@ -21,7 +21,7 @@
 </p>
 
 <script>
-// 23:08
+// 23:11
 
 undefineCount = 0;
 
@@ -85,6 +85,8 @@ switch (random % 3) {
         break;
 }
 
+var hash = "野球、天気、ラッキーナンバー、ゲーム、名前" + "くらいですかね、いまの段階だと";
+
 
 
 
@@ -95,7 +97,8 @@ var response = {
     "野球": baseball,
     "ラッキーナンバー": luckynumber,
     "ゲーム": game,
-    "名前": name
+    "名前": name,
+    "ハッシュ": hash
 };
 
 const startButton = document.querySelector('#startButton'); // 開始ボタン
@@ -154,13 +157,13 @@ asr.onresult = function(event){
 
         if(typeof answer == 'undefined'){
             undefineCount++;
-            if(undefineCount = 4) {
+            if(undefineCount == 4) {
                 answer = "いいですか、1回しか言いませんよ。ハッシュの一覧を知りたいとでもどうぞ";
             }
-            else if (undefineCount = 6 || undefineCount = 2){
+            else if (undefineCount = 6 || undefineCount == 2){
                 answer = "はあ";
             }
-            else if (undefineCount > 5 || undefineCount = 3) {
+            else if (undefineCount > 5 || undefineCount == 3) {
                 answer = "私が話したいことしか話しませんよ。あなたもそれをわかっているのではありませんか"
             }
             else{
