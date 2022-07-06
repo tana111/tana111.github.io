@@ -21,9 +21,9 @@
 </p>
 
 <script>
-// 23:11
+// はい
 
-undefineCount = 0;
+
 
 var min = 1;
 var max = 100;
@@ -56,7 +56,7 @@ switch (random % 2) {
         break;
 }
 
-var luckynumber = "あなたのラッキーナンバーは" + random + "です。実はF5を押すとこれって変わるんですよ。私と話してまだ押していないなら押してみてください";
+var luckynumber = "ラッキーナンバーは" + random + "です。実はF5を押すとこれって変わるんですよ。まだ押していないなら押してみてください";
 
 switch (random % 4) {
     case 0:
@@ -156,18 +156,30 @@ asr.onresult = function(event){
         });
 
         if(typeof answer == 'undefined'){
-            undefineCount++;
-            if(undefineCount == 4) {
-                answer = "いいですか、1回しか言いませんよ。ハッシュの一覧を知りたいとでもどうぞ";
-            }
-            else if (undefineCount = 6 || undefineCount == 2){
-                answer = "はあ";
-            }
-            else if (undefineCount > 5 || undefineCount == 3) {
-                answer = "私が話したいことしか話しませんよ。あなたもそれをわかっているのではありませんか"
-            }
-            else{
-                answer = "その話には全く興味がありません。他をあたってください";
+            var mina = 1;
+            var maxa = 100;
+            var randoma = Math.floor(Math.random() * (maxa + 1 - mina)) + mina;
+            switch(randoma % 10){
+                case 0:
+                    answer = "いいですか、ハッシュの一覧を知りたいとでもどうぞ";
+                    break;
+                case 1:
+                case 2:
+                    answer = "私が話したいことしか話しませんよ。あなたもそれをわかっているのではありませんか";
+                    break;
+                case 3:
+                case 4:
+                    answer = "その話には全く興味がありません。他をあたってください";
+                    break;
+                case 5:
+                case 6:
+                    answer = "はあ";
+                    break;
+                case 7:
+                case 8:
+                case 9:
+                    answer = "あなたはその話が面白いと思っているかもしれませんが、他の人も必ず面白いと思っていると考えてはいけませんよ";
+                    break;
             }
     	}
 	
