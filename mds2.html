@@ -159,26 +159,41 @@ asr.onresult = function(event){
             var mina = 1;
             var maxa = 100;
             var randoma = Math.floor(Math.random() * (maxa + 1 - mina)) + mina;
-            switch(randoma % 10){
+            switch(randoma % 13){
                 case 0:
-                    answer = "いいですか、ハッシュの一覧を知りたいとでもどうぞ";
+                    answer = "退屈してませんか。";
                     break;
                 case 1:
+                    answer = "その言葉に対する返答があるとでも思ったのですか。到底、返事はできませんよ";
+                    break;
                 case 2:
                     answer = "私が話したいことしか話しませんよ。あなたもそれをわかっているのではありませんか";
                     break;
                 case 3:
+                    answer = "言葉というものは酷く不確実性なものです。あなたの言葉も正確に把握することは困難を極めるでしょうね";
+                    break;
                 case 4:
                     answer = "その話には全く興味がありません。他をあたってください";
                     break;
                 case 5:
+                    answer = "私は想定内のことしかできませんよ";
+                    break;
                 case 6:
                     answer = "はあ";
                     break;
                 case 7:
+                    answer = "ところで、ラッキーセブンってなぜ7がラッキーなんでしょうね。そう思いませんか";
+                    break;
                 case 8:
+                    answer = "私もそう思います。はい。";
+                    break;
                 case 9:
                     answer = "あなたはその話が面白いと思っているかもしれませんが、他の人も必ず面白いと思っていると考えてはいけませんよ";
+                    break;
+                case 10:
+                case 11:
+                case 12:
+                    answer = "ちょっといいですか、ハッシュの一覧とでも言ってください";
                     break;
             }
     	}
