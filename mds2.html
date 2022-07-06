@@ -21,11 +21,33 @@
 </p>
 
 <script>
+import random;
 
-var random = 100 * Math.random();
+var random = (int)(100 * Math.random()) + 1; // 1~100の整数
+System.out.println(random);
 var test = "大阪";
-
-
+switch (random % 4) {
+    case 0:
+        var weather = "そもそもあなたは天気の定義を知っていますか。知らないですよね";
+        break;
+    case 1:
+        var weather = "たとえば晴れと言っても雲の量で天気は変わってきます。となると...微妙ですね";
+        break;
+    case 2:
+        var weather = "天気などどうでも良いのでは？野球の試合が中止にならなければの話ですが";
+        break;
+    case 3:
+        var weather = "そんなことより家でゲームがしたい。そうすれば天気は気にしなくていい";
+        break;
+}
+switch (random % 2) {
+    case 0:
+        var baseball = "好きなチームは最近ニュースがないあのチームですね。頑張って欲しいです";
+        break;
+    case 1:
+        var baseball = "野球中継に限らず中途半端に終ってしまうと悲しいですよね";
+        break;
+}
 
 
 
@@ -33,18 +55,8 @@ var test = "大阪";
 // 応答の定義（ハッシュ）    
 var response = {
     "テスト": test,
-    "あなた,誰": "わたしはアレクサではありません",
-    "名前は": "内緒です",
-    "何歳": "え、わたし、何歳にみえますか",
-    "元気": "元気ですよー",
-    "好きな,色": "オレンジです",
-    "夢は": "世界を冒険することです",
-    "好きな,スポーツ": "けん玉です",
-    "好きな,食べ物": "焼肉です",
-    "和歌山,天気": "和歌山の天気はたぶん晴れでしょう",
-    "大阪,天気": "大阪の天気は雨です。",
-    "明日,天気": "明日の天気は曇りだと思います",
-    "明日,和歌山,天気": "明日の和歌山の天気はずばり雪です"
+    "天気": weather,
+    "野球": baseball
 };
 
 const startButton = document.querySelector('#startButton'); // 開始ボタン
