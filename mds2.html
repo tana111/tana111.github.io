@@ -23,7 +23,10 @@
 <script>
 // 22時32分
 
-var random = (int)(100 * Math.random()) + 1; // 1~100の整数
+var min = 1;
+var max = 100;
+var random = Math.floor(Math.random() * (max + 1 - min)) + min;
+
 System.out.println(random);
 var test = "大阪";
 switch (random % 4) {
