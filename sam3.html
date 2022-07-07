@@ -45,14 +45,14 @@ arrayWeather.push("たとえば晴れと言っても雲の量で天気は変わ�
 arrayWeather.push("天気などどうでも良いのでは？野球の試合が中止にならなければの話ですが");
 arrayWeather.push("そんなことより家でゲームがしたいです。そうすれば天気は気にしなくていいのに");
 answerwordnumber = random % arrayWeather.length;
-var weather = arrayTalk[answerwordnumber];
+var weather = arrayWeather[answerwordnumber];
 
 // 野球
 arrayBaseball = [];
 arrayBaseball.push("好きなチームは、最近良いニュースがないあのチームですね。頑張って欲しいです。ゲームでも私は贔屓にしています");
 arrayBaseball.push("野球中継に限らず何事も中途半端に終わってしまうと悲しいですよね");
 answerwordnumber = random % arrayBaseball.length;
-var baseball = arrayTalk[answerwordnumber];
+var baseball = arrayBaseball[answerwordnumber];
 
 // ラッキーナンバー
 var luckynumber = "ラッキーナンバーは" + random + "です。実はF5を押すとこれって変わるんですよ。まだ押していないなら押してみてください。まあ、意味がないかもしれませんが";
@@ -72,7 +72,7 @@ arrayName.push("私は音声対話システムです。名前はまだありま�
 arrayName.push("まずあなたから名乗ってみてはどうですか。私はあなたの名前を知らないのにそれって失礼じゃないですか");
 arrayName.push("どうせ伝えても明日には忘れていますよ。意味のないことです");
 answerwordnumber = random % arrayName.length;
-var name = array[answerwordnumber];
+var name = arrayName[answerwordnumber];
 
 // ハッシュ
 var hash = "まあ、私が多少興味のある話題は、" + "野球、天気、ラッキーナンバー、ゲーム、私の名前" + "くらいですかね、今は。大して変わりありませんが";
