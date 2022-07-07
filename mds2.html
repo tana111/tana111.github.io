@@ -30,12 +30,12 @@
 </p>
 
 <script>
-// 2022/07/06
+// 2022/07/07
 
 
 
 var min = 1;
-var max = 100;
+var max = 10000;
 var random = Math.floor(Math.random() * (max + 1 - min)) + min;
 
 
@@ -168,9 +168,9 @@ asr.onresult = function(event){
 
         if(typeof answer == 'undefined'){
             var mina = 1;
-            var maxa = 100;
+            var maxa = 1000000;
             var randoma = Math.floor(Math.random() * (maxa + 1 - mina)) + mina;
-            switch(randoma % 29){
+            switch(randoma % 44){
                 case 0:
                     answer = "うーん、退屈してませんか。";
                     break;
