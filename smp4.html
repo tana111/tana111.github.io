@@ -216,11 +216,9 @@ asr.onresult = function(event){
 				        Object.keys(res.result).forEach(function (key) {
 					        console.log(key + ": " + res.result[key])
 				        });
-			
-				        // method が SAY のときのみ
-				        if(res.result.method == "SAY"){
-					        answer = res.result.param_text_tts || res.result.param_text;
-                            tts.text = answer;
+		
+					    answer = res.result.param_text_tts || res.result.param_text;
+                        tts.text = answer;
             }         
             // HTTPリクエストの実行
 		request.send();
