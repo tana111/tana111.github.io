@@ -189,7 +189,7 @@ asr.onresult = function(event){
         });
 
         if(typeof answer == 'undefined'){
-            var randoma = Math.floor(Math.random() * (maxa + 1 - mina)) + mina;
+            var randoma = Math.floor(Math.random() * (max + 1 - min)) + min;
             answerwordnumber = randoma % arrayTalk.length;
             answer = arrayTalk[answerwordnumber];                
     	}

@@ -193,7 +193,7 @@ asr.onresult = function(event){
         });
 
         if(typeof answer == 'undefined'){
-            var randomUndefined = Math.floor(Math.random() * (max + 1 - min)) + mina;
+            var randomUndefined = Math.floor(Math.random() * (max + 1 - min)) + min;
             if(randomUndefined > (max / 2)){
                 answerwordnumber = randomUndefined % arrayTalk.length;
                 answer = arrayTalk[answerwordnumber]; 
