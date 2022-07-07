@@ -191,7 +191,7 @@ asr.onresult = function(event){
         if(typeof answer == 'undefined'){
             var randoma = Math.floor(Math.random() * (maxa + 1 - mina)) + mina;
             answerwordnumber = randoma % arrayTalk.length;
-            var answer = arrayTalk[answerwordnumber];                
+            answer = arrayTalk[answerwordnumber];                
     	}
 	
         output += transcript + ' => ' + answer + '<br>';
