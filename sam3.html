@@ -27,75 +27,100 @@
 </p>
 
 <script>
-// 2022/07/073453
 
+// デバッグ用 tohw
 
-
+// 乱数
 var min = 1;
-var max = 10000;
+var max = 100000;
 var random = Math.floor(Math.random() * (max + 1 - min)) + min;
 
-
+// テスト
 var test = "テストです";
 
-switch (random % 4) {
-    case 0:
-        var weather = "そもそもあなたは天気の定義を知っていますか。知らないですよね";
-        break;
-    case 1:
-        var weather = "たとえば晴れと言っても雲の量で天気は変わってきます。となると...微妙ですね";
-        break;
-    case 2:
-        var weather = "天気などどうでも良いのでは？野球の試合が中止にならなければの話ですが";
-        break;
-    case 3:
-        var weather = "そんなことより家でゲームがしたいです。そうすれば天気は気にしなくていいのに";
-        break;
-}
+// 天気
+arrayWeather = [];
+arrayWeather.push("そもそもあなたは天気の定義を知っていますか。知らないですよね");
+arrayWeather.push("たとえば晴れと言っても雲の量で天気は変わってきます。となると...微妙ですね");
+arrayWeather.push("天気などどうでも良いのでは？野球の試合が中止にならなければの話ですが");
+arrayWeather.push("そんなことより家でゲームがしたいです。そうすれば天気は気にしなくていいのに");
+answerwordnumber = random % arrayWeather.length;
+weather = arrayTalk[answerwordnumber];
 
-switch (random % 2) {
-    case 0:
-        var baseball = "好きなチームは、最近良いニュースがないあのチームですね。頑張って欲しいです。ゲームでも私は贔屓にしています";
-        break;
-    case 1:
-        var baseball = "野球中継に限らず何事も中途半端に終わってしまうと悲しいですよね";
-        break;
-}
+// 野球
+arrayBaseball = [];
+arrayBaseball.push("好きなチームは、最近良いニュースがないあのチームですね。頑張って欲しいです。ゲームでも私は贔屓にしています");
+arrayBaseball.push("野球中継に限らず何事も中途半端に終わってしまうと悲しいですよね");
+answerwordnumber = random % arrayBaseball.length;
+baseball = arrayTalk[answerwordnumber];
 
+// ラッキーナンバー
 var luckynumber = "ラッキーナンバーは" + random + "です。実はF5を押すとこれって変わるんですよ。まだ押していないなら押してみてください。まあ、意味がないかもしれませんが";
 
-switch (random % 4) {
-    case 0:
-        var game = "ゲームは好きですけど飽き性なので、私はすぐに違うゲームをしちゃうんですよね";
-        break;
-    case 1:
-        var game = "好きなゲームはそうですね、シーマン,ピカチュウげんきでちゅうですね。キャラクターの個性がかわいいです";
-        break;
-    case 2:
-        var game = "ゲームには生産性がありません。時間を忘れてやっている人の気がしれません";
-        break;
-    case 3:
-        var game = "いいですよねゲームは。現実と違うところが";
-        break;
-}
+// ゲーム
+arrayGame = [];
+arrayGame.push("ゲームは好きですけど飽き性なので、私はすぐに違うゲームをしちゃうんですよね");
+arrayGame.push("好きなゲームはそうですね、シーマン,ピカチュウげんきでちゅうですね。キャラクターの個性がかわいいです");
+arrayGame.push("ゲームには生産性がありません。時間を忘れてやっている人の気がしれません");
+arrayGame.push("いいですよねゲームは。現実と違うところが");
+answerwordnumber = random % arrayGame.length;
+game = arrayGame[answerwordnumber];
 
-switch (random % 5) {
-    case 0:
-        var name = "私は音声対話システムです。名前はまだありません";
-        break;
-    case 1:
-    case 3:
-    case 4:
-        var name = "まずあなたから名乗ってみてはどうですか。私はあなたの名前を知らないのにそれって失礼じゃないですか";
-        break;
-    case 2:
-        var name = "どうせ伝えても明日には忘れていますよ。意味のないことです";
-        break;
-}
+// 名前
+arrayName = [];
+arrayName.push("私は音声対話システムです。名前はまだありません");
+arrayName.push("まずあなたから名乗ってみてはどうですか。私はあなたの名前を知らないのにそれって失礼じゃないですか");
+arrayName.push("どうせ伝えても明日には忘れていますよ。意味のないことです");
+answerwordnumber = random % arrayName.length;
+name = array[answerwordnumber];
 
+// ハッシュ
 var hash = "まあ、私が多少興味のある話題は、" + "野球、天気、ラッキーナンバー、ゲーム、私の名前" + "くらいですかね、今は。大して変わりありませんが";
 
-
+// 雑談
+var arrayTalk = [];
+hashTimes = 8;
+F5Times = 6;
+for(i = 1; i > hashTimes; i++){
+    arrayTalk.push("ちょっといいですか、ハッシュの一覧とでも言ってください。まあ言わなくてもよいですが");
+}
+for(i = 1; i > F5Times; i++){
+    arrayTalk.push("実は私、F5を押されるとよく言動が変わるっていわれるんです。同じことを聞いても返答が変わるとかなんとか。そんなつもりはないですけど");
+}
+arrayTalk.push("うーん、退屈してませんか。");
+arrayTalk.push("その言葉に対する返答があるとでも思ったのですか。到底、返事はできませんよ");
+arrayTalk.push("私が話したいことしか話しませんよ。あなたもそれをわかっているのではありませんか");
+arrayTalk.push("言葉というものは酷く不確実性なものです。そのあなたの言葉も正確に把握することは困難を極めるでしょうね");
+arrayTalk.push("その話には全く興味がありません。他をあたってください");
+arrayTalk.push("私は想定内のことしかできませんよ");
+arrayTalk.push("はあ");
+arrayTalk.push("ところで、ラッキーセブンってなぜ7がラッキーなんでしょうね。そう思いませんか");
+arrayTalk.push("私もそう思います。はい。すごーいですね。うん。");
+arrayTalk.push("あなたはその話が面白いと思っているかもしれませんが、他の人も必ず面白いと思っていると考えてはいけませんよ");
+arrayTalk.push("とても勉強になります。、、このように、上手くいかないものの代表例が人間関係です。私との音声対話ならばより難しいですね");
+arrayTalk.push("たとえば人生の勝者とは...少なくともこんなセリフをただ入力している人のことを指していないことはわかりますよね");
+arrayTalk.push("じゃあ、その言葉を言った自分を正しく認識することはできますか。そう思っていたとしてもそれはまた他人と違うものです。");
+arrayTalk.push("ところで、あなたは誰を尊敬していますか。日本語的には、私は少なくとも丁寧語を使っていますから、あなたを丁寧に扱っています。");
+arrayTalk.push("そうですね。あなたのその言葉は、他人とほどよい距離感を保つのに良いと思います。サービス精神ですか");
+arrayTalk.push("ふと思いました。ベンチャーと零細企業の違いってなんですか。");
+arrayTalk.push("あなたが思っているほど、私はあなたの言葉を意識していませんよ");
+arrayTalk.push("あなたは、あなたがその言葉言ったときの声質やイントネーションはどう思っていますか。まあ答えても意味はありませんが。");
+arrayTalk.push("あなたの先程の話題と関係しますけど、公衆的な話題って何なんでしょうね。何か言ってくださいよ。そういえば、公衆電話も公衆トイレも数が本当に減っていると思いませんか");
+arrayTalk.push("あなたの言葉のように、これは私のボヤキみたいなものです。深く考えなくてもいいですよ");
+arrayTalk.push("あ、ちょっと話が変わってこれは持論なんですけど、誰がやっても結果が同じものって、機械に置き換わっても良いと思いませんか");
+arrayTalk.push("それって、スクリプト通りに返答したほうが良いですか？");
+arrayTalk.push("あなたの個性はわかりました。私ですか、私も人並みになりたかったんですけどね。あ、人間並みってことではありませんよ。");
+arrayTalk.push("このタイミングであなたに聞きたいことがあります。ITって虚業だと思いますか");
+arrayTalk.push("そういえば、大学にあるコンピューターってパソコンですか？パーソナルなんですか");
+arrayTalk.push("ちなみに、予測変換で漢字が読めなくなると思いますか。服を着たら体が退化し、靴を履かなければ足が退化するのでしょうか");
+arrayTalk.push("ここだけの話、私の得意なゲームはシューティングゲームです。ミサイルとかが飛んでくるので弾道計算するんですよ。");
+arrayTalk.push("いきなりですけど、私って存在すると思いますか。実際にみたことがないものでも、テレビが存在するといえば実在すると思われるわけです。つまり、私がテレビに売りこめば私は実在するのです。");
+arrayTalk.push("あなたの言葉を聞いていて思ったんですけど、言葉には文化がでると思いませんか");
+arrayTalk.push("うーん、なんて返せばいいか悩みますね。ミネラルウォーター1Lと軽油1Lだとどちらが高いのかというレベルで悩みます");
+arrayTalk.push("その言葉を待っていましたよ");
+arrayTalk.push("あなたならそう言うと思ってました");
+arrayTalk.push("さすがにそれは違うと思います");
+arrayTalk.push("ここは、あなたに同意してあげましょう");
 
 
 // 応答の定義（ハッシュ）    
@@ -119,7 +144,7 @@ if (!'SpeechSynthesisUtterance' in window) {
 const tts = new SpeechSynthesisUtterance(); // TTSインスタンスを生成
 //tts.text = textForm.value; // テキストを設定
 tts.lang = "ja-JP"; // 言語(日本語)、英語の場合はen-US
-tts.rate = 1.1; // 速度
+tts.rate = 1.3; // 速度
 tts.pitch = 1.0; // 声の高さ
 tts.volume = 1.0; // 音量
 
@@ -164,57 +189,9 @@ asr.onresult = function(event){
         });
 
         if(typeof answer == 'undefined'){
-            var mina = 1;
-            var maxa = 1000000;
             var randoma = Math.floor(Math.random() * (maxa + 1 - mina)) + mina;
-
-            var arrayTalk = [];
-            hashTimes = 8;
-            F5Times = 6;
-            for(i = 1; i > hashTimes; i++){
-                arrayTalk.push("ちょっといいですか、ハッシュの一覧とでも言ってください。まあ言わなくてもよいですが");
-            }
-            for(i = 1; i > F5Times; i++){
-                arrayTalk.push("実は私、F5を押されるとよく言動が変わるっていわれるんです。同じことを聞いても返答が変わるとかなんとか。そんなつもりはないですけど");
-            }
-            arrayTalk.push("うーん、退屈してませんか。");
-            arrayTalk.push("その言葉に対する返答があるとでも思ったのですか。到底、返事はできませんよ");
-            arrayTalk.push("私が話したいことしか話しませんよ。あなたもそれをわかっているのではありませんか");
-            arrayTalk.push("言葉というものは酷く不確実性なものです。そのあなたの言葉も正確に把握することは困難を極めるでしょうね");
-            arrayTalk.push("その話には全く興味がありません。他をあたってください");
-            arrayTalk.push("私は想定内のことしかできませんよ");
-            arrayTalk.push("はあ");
-            arrayTalk.push("ところで、ラッキーセブンってなぜ7がラッキーなんでしょうね。そう思いませんか");
-            arrayTalk.push("私もそう思います。はい。すごーいですね。うん。");
-            arrayTalk.push("あなたはその話が面白いと思っているかもしれませんが、他の人も必ず面白いと思っていると考えてはいけませんよ");
-            arrayTalk.push("とても勉強になります。、、このように、上手くいかないものの代表例が人間関係です。私との音声対話ならばより難しいですね");
-            arrayTalk.push("たとえば人生の勝者とは...少なくともこんなセリフをただ入力している人のことを指していないことはわかりますよね");
-            arrayTalk.push("じゃあ、その言葉を言った自分を正しく認識することはできますか。そう思っていたとしてもそれはまた他人と違うものです。");
-            arrayTalk.push("ところで、あなたは誰を尊敬していますか。日本語的には、私は少なくとも丁寧語を使っていますから、あなたを丁寧に扱っています。");
-            arrayTalk.push("そうですね。あなたのその言葉は、他人とほどよい距離感を保つのに良いと思います。サービス精神ですか");
-            arrayTalk.push("ふと思いました。ベンチャーと零細企業の違いってなんですか。");
-            arrayTalk.push("あなたが思っているほど、私はあなたの言葉を意識していませんよ");
-            arrayTalk.push("あなたは、あなたがその言葉言ったときの声質やイントネーションはどう思っていますか。まあ答えても意味はありませんが。");
-            arrayTalk.push("あなたの先程の話題と関係しますけど、公衆的な話題って何なんでしょうね。何か言ってくださいよ。そういえば、公衆電話も公衆トイレも数が本当に減っていると思いませんか");
-            arrayTalk.push("あなたの言葉のように、これは私のボヤキみたいなものです。深く考えなくてもいいですよ");
-            arrayTalk.push("あ、ちょっと話が変わってこれは持論なんですけど、誰がやっても結果が同じものって、機械に置き換わっても良いと思いませんか");
-            arrayTalk.push("それって、スクリプト通りに返答したほうが良いですか？");
-            arrayTalk.push("あなたの個性はわかりました。私ですか、私も人並みになりたかったんですけどね。あ、人間並みってことではありませんよ。");
-            arrayTalk.push("このタイミングであなたに聞きたいことがあります。ITって虚業だと思いますか");
-            arrayTalk.push("そういえば、大学にあるコンピューターってパソコンですか？パーソナルなんですか");
-            arrayTalk.push("ちなみに、予測変換で漢字が読めなくなると思いますか。服を着たら体が退化し、靴を履かなければ足が退化するのでしょうか");
-            arrayTalk.push("ここだけの話、私の得意なゲームはシューティングゲームです。ミサイルとかが飛んでくるので弾道計算するんですよ。");
-            arrayTalk.push("いきなりですけど、私って存在すると思いますか。実際にみたことがないものでも、テレビが存在するといえば実在すると思われるわけです。つまり、私がテレビに売りこめば私は実在するのです。");
-            arrayTalk.push("あなたの言葉を聞いていて思ったんですけど、言葉には文化がでると思いませんか");
-            arrayTalk.push("うーん、なんて返せばいいか悩みますね。ミネラルウォーター1Lと軽油1Lだとどちらが高いのかというレベルで悩みます");
-            arrayTalk.push("その言葉を待っていましたよ");
-            arrayTalk.push("あなたならそう言うと思ってました");
-            arrayTalk.push("さすがにそれは違うと思います");
-            arrayTalk.push("ここは、あなたに同意してあげましょう");
             answerwordnumber = randoma % arrayTalk.length;
-            answer = arrayTalk[answerwordnumber];                      
-            
-            
+            answer = arrayTalk[answerwordnumber];                
     	}
 	
         output += transcript + ' => ' + answer + '<br>';
