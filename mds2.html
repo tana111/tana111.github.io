@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
-<title>kadai</title>
+<title>音声対話してるようでしていないプログラム</title>
 </head>
 <body>
 
@@ -18,6 +18,11 @@
 
 <p>
 <a href="https://tana111.github.io/readme.html">数分対話したあとに見るのが良さそうなRead me</a>
+</p>
+
+<p>
+何か話してみてください。私は聞き上手と言われることが多いので安心してください。<br>
+稀に無愛想ともいわれますが。私から何か声を出すことは苦手なもので。<br>
 </p>
 
 <p>
@@ -53,14 +58,14 @@ switch (random % 4) {
 
 switch (random % 2) {
     case 0:
-        var baseball = "好きなチームは、最近ニュースがないあのチームですね。頑張って欲しいです。ゲームでも私は贔屓にしています";
+        var baseball = "好きなチームは、最近良いニュースがないあのチームですね。頑張って欲しいです。ゲームでも私は贔屓にしています";
         break;
     case 1:
-        var baseball = "野球中継に限らず中途半端に終ってしまうと悲しいですよね";
+        var baseball = "野球中継に限らず何事も中途半端に終わってしまうと悲しいですよね";
         break;
 }
 
-var luckynumber = "ラッキーナンバーは" + random + "です。実はF5を押すとこれって変わるんですよ。まだ押していないなら押してみてください";
+var luckynumber = "ラッキーナンバーは" + random + "です。実はF5を押すとこれって変わるんですよ。まだ押していないなら押してみてください。まあ、意味がないかもしれませんが";
 
 switch (random % 4) {
     case 0:
@@ -77,11 +82,13 @@ switch (random % 4) {
         break;
 }
 
-switch (random % 3) {
+switch (random % 5) {
     case 0:
         var name = "私は音声対話システムです。名前はまだありません";
         break;
     case 1:
+    case 3:
+    case 4:
         var name = "まずあなたから名乗ってみてはどうですか。私はあなたの名前を知らないのにそれって失礼じゃないですか";
         break;
     case 2:
@@ -89,7 +96,7 @@ switch (random % 3) {
         break;
 }
 
-var hash = "野球、天気、ラッキーナンバー、ゲーム、名前" + "くらいですかね、いまの段階だと";
+var hash = "まあ、私が多少興味のある話題は、" + "野球、天気、ラッキーナンバー、ゲーム、私の名前" + "くらいですかね、今は。大して変わりありませんが";
 
 
 
@@ -115,7 +122,7 @@ if (!'SpeechSynthesisUtterance' in window) {
 const tts = new SpeechSynthesisUtterance(); // TTSインスタンスを生成
 //tts.text = textForm.value; // テキストを設定
 tts.lang = "ja-JP"; // 言語(日本語)、英語の場合はen-US
-tts.rate = 1.0; // 速度
+tts.rate = 1.1; // 速度
 tts.pitch = 1.0; // 声の高さ
 tts.volume = 1.0; // 音量
 
@@ -199,17 +206,20 @@ asr.onresult = function(event){
                 case 12:
                 case 16:
                 case 17:
-                case 27:
-                    answer = "ちょっといいですか、ハッシュの一覧とでも言ってください";
+                case 39:
+                case 40:
+                case 43:
+                    answer = "ちょっといいですか、ハッシュの一覧とでも言ってください。まあ言わなくてもよいですが";
                     break;
                 case 13:
                 case 14:
                 case 15:
-                case 28:
+                case 41:
+                case 42:
                     answer = "実は私、F5を押されるとよく言動が変わるっていわれるんです。同じことを聞いても返答が変わるとかなんとか。そんなつもりはないですけど";
                     break;
                 case 18:
-                    answer = "このように、上手くいかないのが人間関係です。音声対話ならばより難しいですね";
+                    answer = "とても勉強になります。、、このように、上手くいかないものの代表例が人間関係です。私との音声対話ならばより難しいですね";
                     break;
                 case 19:
                     answer = "たとえば人生の勝者とは...少なくともこんなセリフをただ入力している人のことを指していないことはわかりますよね";
@@ -235,6 +245,45 @@ asr.onresult = function(event){
                 case 26:
                     answer = "あなたの先程の話題と関係しますけど、公衆的な話題って何なんでしょうね。何か言ってくださいよ。そういえば、公衆電話も公衆トイレも数が本当に減っていると思いませんか";
                     break;
+                case 27:
+                    answer = "あなたの言葉のように、これは私のボヤキみたいなものです。深く考えなくてもいいですよ";
+                    break;
+                case 28:
+                    answer = "あ、ちょっと話が変わってこれは持論なんですけど、誰がやっても結果が同じものって、機械に置き換わっても良いと思いませんか";
+                    break;
+                case 29:
+                case 30:
+                    answer = "それって、スクリプト通りに返答したほうが良いですか？";
+                    break;
+                case 31:
+                    answer = "あなたの個性はわかりました。私ですか、私も人並みになりたかったんですけどね。あ、人間並みってことではありませんよ。";
+                    break;
+                case 32:
+                    answer = "このタイミングであなたに聞きたいことがあります。ITって虚業だと思いますか";
+                    break;
+                case 33:
+                    answer = "そういえば、大学にあるコンピューターってパソコンですか？パーソナルなんですか";
+                    break;
+                case 34:
+                    answer = "ちなみに、予測変換で漢字が読めなくなると思いますか。服を着たら体が退化し、靴を履かなければ足が退化するのでしょうか";
+                    break;
+                case 35:
+                    answer = "ここだけの話、私の得意なゲームはシューティングゲームです。ミサイルとかが飛んでくるので弾道計算するんですよ。";
+                    break;
+                case 36:
+                    answer = "いきなりですけど、私って存在すると思いますか。実際にみたことがないものでも、テレビが存在するといえば実在すると思われるわけです。つまり、私がテレビに売りこめば私は実在するのです。";
+                    break;
+                case 37:
+                    answer = "あなたの言葉を聞いていて思ったんですけど、言葉には文化がでると思いませんか";
+                    break;
+                case 38:
+                    answer = "うーん、なんて返せばいいか悩みますね。ミネラルウォーター1Lと軽油1Lだとどちらが高いのかというレベルで悩みます";
+                    break;
+                
+                
+                
+                
+                
             }
     	}
 	
