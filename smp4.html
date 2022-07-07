@@ -1,0 +1,258 @@
+<html lang="ja">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<title>音声対話してるようでしていないプログラム</title>
+</head>
+<body>
+
+<h1>音声対話してるようでしていないプログラム</h1>
+
+
+<p>
+<button id="startButton">start</button>
+<button id="stopButton">stop</button>
+</p>
+
+<p>
+スタートボタンを押して何か話してみてください。私は聞き上手と言われることが多いので安心してください。<br>
+稀に無愛想ともいわれますが。私から何か声を出すことは苦手なもので。<br>
+<a href="https://tana111.github.io/readme.html">Read me</a>を見るのは、私と少し話してから見るのが良いと思います。<br>
+</p>
+
+<p>
+<div id="resultOutput"></div>
+</p>
+
+<script>
+
+// デバッグ用 tohw
+
+
+const URL = "https://jlp.yahooapis.jp/NLUService/V1/analyze?appid="; // APIのリクエストURL
+const APIID = "dj00aiZpPVFKMHVscUdnb0ZWeSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDY-"; // あなたのアプリケーションID
+
+// 乱数
+var min = 1;
+var max = 100000;
+var random = Math.floor(Math.random() * (max + 1 - min)) + min;
+
+// テスト
+var test = "テストです";
+
+// 天気
+arrayWeather = [];
+arrayWeather.push("そもそもあなたは天気の定義を知っていますか。知らないですよね");
+arrayWeather.push("たとえば晴れと言っても雲の量で天気は変わってきます。となると...微妙ですね");
+arrayWeather.push("天気などどうでも良いのでは？野球の試合が中止にならなければの話ですが");
+arrayWeather.push("そんなことより家でゲームがしたいです。そうすれば天気は気にしなくていいのに");
+answerwordnumber = random % arrayWeather.length;
+var weather = arrayTalk[answerwordnumber];
+
+// 野球
+arrayBaseball = [];
+arrayBaseball.push("好きなチームは、最近良いニュースがないあのチームですね。頑張って欲しいです。ゲームでも私は贔屓にしています");
+arrayBaseball.push("野球中継に限らず何事も中途半端に終わってしまうと悲しいですよね");
+answerwordnumber = random % arrayBaseball.length;
+var baseball = arrayTalk[answerwordnumber];
+
+// ラッキーナンバー
+var luckynumber = "ラッキーナンバーは" + random + "です。実はF5を押すとこれって変わるんですよ。まだ押していないなら押してみてください。まあ、意味がないかもしれませんが";
+
+// ゲーム
+arrayGame = [];
+arrayGame.push("ゲームは好きですけど飽き性なので、私はすぐに違うゲームをしちゃうんですよね");
+arrayGame.push("好きなゲームはそうですね、シーマン,ピカチュウげんきでちゅうですね。キャラクターの個性がかわいいです");
+arrayGame.push("ゲームには生産性がありません。時間を忘れてやっている人の気がしれません");
+arrayGame.push("いいですよねゲームは。現実と違うところが");
+answerwordnumber = random % arrayGame.length;
+var game = arrayGame[answerwordnumber];
+
+// 名前
+arrayName = [];
+arrayName.push("私は音声対話システムです。名前はまだありません");
+arrayName.push("まずあなたから名乗ってみてはどうですか。私はあなたの名前を知らないのにそれって失礼じゃないですか");
+arrayName.push("どうせ伝えても明日には忘れていますよ。意味のないことです");
+answerwordnumber = random % arrayName.length;
+var name = array[answerwordnumber];
+
+// ハッシュ
+var hash = "まあ、私が多少興味のある話題は、" + "野球、天気、ラッキーナンバー、ゲーム、私の名前" + "くらいですかね、今は。大して変わりありませんが";
+
+// 雑談
+var arrayTalk = [];
+hashTimes = 8;
+F5Times = 6;
+for(i = 1; i > hashTimes; i++){
+    arrayTalk.push("ちょっといいですか、ハッシュの一覧とでも言ってください。まあ言わなくてもよいですが");
+}
+for(i = 1; i > F5Times; i++){
+    arrayTalk.push("実は私、F5を押されるとよく言動が変わるっていわれるんです。同じことを聞いても返答が変わるとかなんとか。そんなつもりはないですけど");
+}
+arrayTalk.push("うーん、退屈してませんか。");
+arrayTalk.push("その言葉に対する返答があるとでも思ったのですか。到底、返事はできませんよ");
+arrayTalk.push("私が話したいことしか話しませんよ。あなたもそれをわかっているのではありませんか");
+arrayTalk.push("言葉というものは酷く不確実性なものです。そのあなたの言葉も正確に把握することは困難を極めるでしょうね");
+arrayTalk.push("その話には全く興味がありません。他をあたってください");
+arrayTalk.push("私は想定内のことしかできませんよ");
+arrayTalk.push("はあ");
+arrayTalk.push("ところで、ラッキーセブンってなぜ7がラッキーなんでしょうね。そう思いませんか");
+arrayTalk.push("私もそう思います。はい。すごーいですね。うん。");
+arrayTalk.push("あなたはその話が面白いと思っているかもしれませんが、他の人も必ず面白いと思っていると考えてはいけませんよ");
+arrayTalk.push("とても勉強になります。、、このように、上手くいかないものの代表例が人間関係です。私との音声対話ならばより難しいですね");
+arrayTalk.push("たとえば人生の勝者とは...少なくともこんなセリフをただ入力している人のことを指していないことはわかりますよね");
+arrayTalk.push("じゃあ、その言葉を言った自分を正しく認識することはできますか。そう思っていたとしてもそれはまた他人と違うものです。");
+arrayTalk.push("ところで、あなたは誰を尊敬していますか。日本語的には、私は少なくとも丁寧語を使っていますから、あなたを丁寧に扱っています。");
+arrayTalk.push("そうですね。あなたのその言葉は、他人とほどよい距離感を保つのに良いと思います。サービス精神ですか");
+arrayTalk.push("ふと思いました。ベンチャーと零細企業の違いってなんですか。");
+arrayTalk.push("あなたが思っているほど、私はあなたの言葉を意識していませんよ");
+arrayTalk.push("あなたは、あなたがその言葉言ったときの声質やイントネーションはどう思っていますか。まあ答えても意味はありませんが。");
+arrayTalk.push("あなたの先程の話題と関係しますけど、公衆的な話題って何なんでしょうね。何か言ってくださいよ。そういえば、公衆電話も公衆トイレも数が本当に減っていると思いませんか");
+arrayTalk.push("あなたの言葉のように、これは私のボヤキみたいなものです。深く考えなくてもいいですよ");
+arrayTalk.push("あ、ちょっと話が変わってこれは持論なんですけど、誰がやっても結果が同じものって、機械に置き換わっても良いと思いませんか");
+arrayTalk.push("それって、スクリプト通りに返答したほうが良いですか？");
+arrayTalk.push("あなたの個性はわかりました。私ですか、私も人並みになりたかったんですけどね。あ、人間並みってことではありませんよ。");
+arrayTalk.push("このタイミングであなたに聞きたいことがあります。ITって虚業だと思いますか");
+arrayTalk.push("そういえば、大学にあるコンピューターってパソコンですか？パーソナルなんですか");
+arrayTalk.push("ちなみに、予測変換で漢字が読めなくなると思いますか。服を着たら体が退化し、靴を履かなければ足が退化するのでしょうか");
+arrayTalk.push("ここだけの話、私の得意なゲームはシューティングゲームです。ミサイルとかが飛んでくるので弾道計算するんですよ。");
+arrayTalk.push("いきなりですけど、私って存在すると思いますか。実際にみたことがないものでも、テレビが存在するといえば実在すると思われるわけです。つまり、私がテレビに売りこめば私は実在するのです。");
+arrayTalk.push("あなたの言葉を聞いていて思ったんですけど、言葉には文化がでると思いませんか");
+arrayTalk.push("うーん、なんて返せばいいか悩みますね。ミネラルウォーター1Lと軽油1Lだとどちらが高いのかというレベルで悩みます");
+arrayTalk.push("その言葉を待っていましたよ");
+arrayTalk.push("あなたならそう言うと思ってました");
+arrayTalk.push("さすがにそれは違うと思います");
+arrayTalk.push("ここは、あなたに同意してあげましょう");
+
+
+// 応答の定義（ハッシュ）    
+var response = {
+    "テスト": test,
+    "天気": weather,
+    "野球": baseball,
+    "ラッキーナンバー": luckynumber,
+    "ゲーム": game,
+    "名前": name,
+    "ハッシュ": hash
+};
+
+const startButton = document.querySelector('#startButton'); // 開始ボタン
+const stopButton = document.querySelector('#stopButton'); // 停止ボタン
+const resultOutput = document.querySelector('#resultOutput'); // 結果出力エリア
+
+if (!'SpeechSynthesisUtterance' in window) {
+    alert("あなたのブラウザはSpeech Synthesis APIに未対応です。");
+}
+const tts = new SpeechSynthesisUtterance(); // TTSインスタンスを生成
+//tts.text = textForm.value; // テキストを設定
+tts.lang = "ja-JP"; // 言語(日本語)、英語の場合はen-US
+tts.rate = 1.3; // 速度
+tts.pitch = 1.0; // 声の高さ
+tts.volume = 1.0; // 音量
+
+SpeechRecognition = webkitSpeechRecognition || SpeechRecognition;
+if (!'SpeechRecognition' in window) {
+    alert("あなたのブラウザはSpeech Recognition APIに未対応です。");
+}
+
+const asr = new SpeechRecognition(); // ASRインスタンスを生成
+asr.lang = "ja-JP"; // 言語（日本語）
+asr.interimResults = true; // 途中結果出力をオン
+asr.continuous = true; // 継続入力をオン
+
+let output = ''; // 出力
+
+// 認識結果が出力されたときのイベントハンドラ
+asr.onresult = function(event){
+    let transcript = event.results[event.resultIndex][0].transcript; // 結果文字列
+
+    let output_not_final = '';
+    if (event.results[event.resultIndex].isFinal) { // 結果が確定（Final）のとき
+	    asr.abort(); // 音声認識を停止
+	    
+        let answer;
+        
+        let keys = Object.keys(response);
+        keys.forEach(function(key) {
+            let flag = true;
+            console.log(transcript);
+            key.split(',').forEach(function(word) {              
+                let pattern = new RegExp(word);
+                let flag_test = pattern.test(transcript); // マッチしたらtrue, しなかったらfalse
+                flag = flag && flag_test; // 両方trueならtrue
+                console.log(pattern + '+' + ':' + flag_test);
+                //flag = flag && new RegExp(word).test(transcript);
+            });
+
+            if(flag){
+		        answer = response[key];
+                console.log(key + " : " + answer);
+            }
+        });
+
+        if(typeof answer == 'undefined'){
+            var randomUndefined = Math.floor(Math.random() * (max + 1 - min)) + mina;
+            if(randomUndefined > (max / 2)){
+                answerwordnumber = randomUndefined % arrayTalk.length;
+                answer = arrayTalk[answerwordnumber]; 
+            }
+            else{
+                let queryURL = URL + APIID + "&intext=" + transcript;
+		        console.log(queryURL);
+		
+                // HTTPリクエストの準備
+                const request = new XMLHttpRequest();
+                request.open('GET', queryURL, true);
+                request.responseType = 'json'; // レスポンスはJSON形式に変換
+            
+                // HTTPの状態が変化したときのイベントハンドラ
+                request.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                    // readyState == 4 操作完了
+                    // status == 200 リクエスト成功（HTTPレスポンス）
+				
+				        let res = this.response; // 結果はJSON形式
+
+				        Object.keys(res.result).forEach(function (key) {
+					        console.log(key + ": " + res.result[key])
+				        });
+			
+				        // method が SAY のときのみ
+				        if(res.result.method == "SAY"){
+					        var answer = res.result.param_text_tts || res.result.param_text;
+            }         
+            }
+        }
+    	}
+    }
+	
+        output += transcript + ' => ' + answer + '<br>';
+
+	    tts.text = answer;
+	    // 再生が終了（end）ときのイベントハンドラ（終了したときに実行される）
+	    tts.onend = function(event){
+	        asr.start(); // 音声認識を再開
+	    }
+
+	    speechSynthesis.speak(tts); // 再生
+    } else { // 結果がまだ未確定のとき
+        output_not_final = '<span style="color:#ddd;">' + transcript + '</span>';
+    }
+    resultOutput.innerHTML = output + output_not_final;
+}
+
+// 開始ボタンのイベントハンドラ
+startButton.addEventListener('click', function() {
+    asr.start();
+})
+
+// 停止ボタンのイベントハンドラ
+stopButton.addEventListener('click', function() {
+    asr.abort();
+    asr.stop();
+})
+</script>
+</body>
+</html>
