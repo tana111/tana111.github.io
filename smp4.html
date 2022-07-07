@@ -17,7 +17,7 @@
 </p>
 
 <p>
-32スタートボタンを押して何か話してみてください。私は聞き上手と言われることが多いので安心してください。<br>
+3232スタートボタンを押して何か話してみてください。私は聞き上手と言われることが多いので安心してください。<br>
 稀に無愛想ともいわれますが。私から何か声を出すことは苦手なもので。<br>
 <a href="https://tana111.github.io/readme.html">Read me</a>を見るのは、私と少し話してから見るのが良いと思います。<br>
 </p>
@@ -29,10 +29,12 @@
 <script>
 
 
-
-
 const URL = "https://jlp.yahooapis.jp/NLUService/V1/analyze?appid="; // APIのリクエストURL
 const APIID = "dj00aiZpPVFKMHVscUdnb0ZWeSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDY-"; // あなたのアプリケーションID
+
+const startButton = document.querySelector('#startButton'); // 開始ボタン
+const stopButton = document.querySelector('#stopButton'); // 停止ボタン
+const resultOutput = document.querySelector('#resultOutput'); // 結果出力エリア
 
 // 乱数
 var min = 1;
@@ -137,10 +139,6 @@ var response = {
     "名前": name,
     "ハッシュ": hash
 };
-
-const startButton = document.querySelector('#startButton'); // 開始ボタン
-const stopButton = document.querySelector('#stopButton'); // 停止ボタン
-const resultOutput = document.querySelector('#resultOutput'); // 結果出力エリア
 
 if (!'SpeechSynthesisUtterance' in window) {
     alert("あなたのブラウザはSpeech Synthesis APIに未対応です。");
