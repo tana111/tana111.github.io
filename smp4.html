@@ -222,7 +222,10 @@ asr.onresult = function(event){
 				        // method が SAY のときのみ
 				        if(res.result.method == "SAY"){
 					        var answer = res.result.param_text_tts || res.result.param_text;
+                            tts.text = answer;
             }         
+            // HTTPリクエストの実行
+		request.send();
             }
         }
     	}
@@ -253,6 +256,13 @@ stopButton.addEventListener('click', function() {
     asr.abort();
     asr.stop();
 })
+
+
 </script>
+
+<!-- Yahoo!JAPANのAPIを利用したときはクレジット表記が必要 -->
+<p>
+    Web Services by Yahoo! JAPAN （https://developer.yahoo.co.jp/about）
+    </p>
 </body>
 </html>
