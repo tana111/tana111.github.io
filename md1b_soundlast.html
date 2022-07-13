@@ -56,6 +56,7 @@ const resultOutput = document.querySelector('#resultOutput'); // 結果出力エ
 var min = 1;
 var max = 100000;
 var random = Math.floor(Math.random() * (max + 1 - min)) + min;
+var numbers = 1;
 
 // テスト
 var test = "テストです";
@@ -202,7 +203,8 @@ asr.onresult = function(event){
 
         if(typeof answer == 'undefined'){
             var randomUndefined = Math.floor(Math.random() * (max + 1 - min)) + min;
-            if(randomUndefined > (max / 2)){
+            numbers++;
+            if((numbers % 2) != 0){
                 answerwordnumber = randomUndefined % arrayTalk.length;
                 answer = arrayTalk[answerwordnumber]; 
                 // output += transcript + ' => ' + answer + '<br>';
