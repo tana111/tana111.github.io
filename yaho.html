@@ -257,9 +257,19 @@ asr.onresult = function(event){
                 request.send();
             }            
     	}
+        if(typeof answer != 'undefined'){
+            output += transcript + ' => ' + answer + '<br>';
+
+            tts.text = answer;
+            // 再生が終了（end）ときのイベントハンドラ（終了したときに実行される）
+            tts.onend = function(event){
+                asr.start(); // 音声認識を再開
+            }
+
+            speechSynthesis.speak(tts); // 再生
+        }
 	
 
-	    speechSynthesis.speak(tts); // 再生
     } else { // 結果がまだ未確定のとき
         output_not_final = '<span style="color:#ddd;">' + transcript + '</span>';
     }
