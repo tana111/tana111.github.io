@@ -17,7 +17,7 @@
 </p>
 
 <p>
-43535343453453454353542スタートボタンを押して何か話してみてください。私は聞き上手と言われることが多いので安心してください。<br>
+355324623462345666666666666666666666662スタートボタンを押して何か話してみてください。私は聞き上手と言われることが多いので安心してください。<br>
 稀に無愛想ともいわれますが。私から何か声を出すことは苦手なもので。<br>
 <a href="https://tana111.github.io/readme.html">Read me</a>を見るのは、私と少し話してから見るのが良いと思います。<br>
 </p>
@@ -165,54 +165,55 @@ let output = ''; // 出力
 // 認識結果が出力されたときのイベントハンドラ
 asr.onresult = function(event){
     let transcript = event.results[event.resultIndex][0].transcript; // 結果文字列
-    let transcript_previous = null; // 結果文字列（ひとつ前）
-    
-    if(event.resultIndex > 0){
-        transcript_previous = event.results[event.resultIndex - 1][0].transcript;
-    }
 
     let output_not_final = '';
     if (event.results[event.resultIndex].isFinal) { // 結果が確定（Final）のとき
+	    asr.abort(); // 音声認識を停止
+	    
+        let answer;
         
-            asr.abort(); // 音声認識を停止
-            
-            let answer;
-            let ret;
-            let webpage;
-            
-            let queryURL = URL + APIID + "&intext=" + transcript;
-            console.log(queryURL);
-            
-            const request = new XMLHttpRequest();
-            request.open('GET', queryURL, true);
-            request.responseType = 'json'; // レスポンスはJSON形式に変換
-            
-            let keys = Object.keys(response);
-            keys.forEach(function(key) {
-                let flag = true;
-                console.log(transcript);
-                key.split(',').forEach(function(word) {              
-                    let pattern = new RegExp(word);
-                    let flag_test = pattern.test(transcript); // マッチしたらtrue, しなかったらfalse
-                    flag = flag && flag_test; // 両方trueならtrue
-                    console.log(pattern + '+' + ':' + flag_test);
-                    //flag = flag && new RegExp(word).test(transcript);
-                });
-
-                if(flag){
-                    ret = response[key];
-                    answer = ret[0];
-                    webpage = ret[1];
-                    console.log(key + " : " + answer);
-                }
+        let keys = Object.keys(response);
+        keys.forEach(function(key) {
+            let flag = true;
+            console.log(transcript);
+            key.split(',').forEach(function(word) {              
+                let pattern = new RegExp(word);
+                let flag_test = pattern.test(transcript); // マッチしたらtrue, しなかったらfalse
+                flag = flag && flag_test; // 両方trueならtrue
+                console.log(pattern + '+' + ':' + flag_test);
+                //flag = flag && new RegExp(word).test(transcript);
             });
-            
-            if(typeof answer == 'undefined'){
-                var randomUndefined = Math.floor(Math.random() * (max + 1 - min)) + min;
-                if(randomUndefined > (max / 2)){
+
+            if(flag){
+		        answer = response[key];
+                console.log(key + " : " + answer);
+            }
+        });
+
+        if(typeof answer == 'undefined'){
+            var randomUndefined = Math.floor(Math.random() * (max + 1 - min)) + min;
+            if(randomUndefined > (max / 2)){
                 answerwordnumber = randomUndefined % arrayTalk.length;
                 answer = arrayTalk[answerwordnumber]; 
-                }else{
+                output += transcript + ' => ' + answer + '<br>';
+
+	            tts.text = answer;
+                // 再生が終了（end）ときのイベントハンドラ（終了したときに実行される）
+                tts.onend = function(event){
+                    asr.start(); // 音声認識を再開
+                }
+
+	    speechSynthesis.speak(tts); // 再生
+            }else{
+                let ret;
+                let webpage;
+                
+                let queryURL = URL + APIID + "&intext=" + transcript;
+                console.log(queryURL);
+                
+                const request = new XMLHttpRequest();
+                request.open('GET', queryURL, true);
+                request.responseType = 'json'; 
                 request.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                     // readyState == 4 操作完了
@@ -251,33 +252,21 @@ asr.onresult = function(event){
                             speechSynthesis.speak(tts); // 再生
                         }
                     }
-
                 }
                 // HTTPリクエストの実行
                 request.send();
-            }
-            } else {
-                output += transcript + "<=" + answer +'<br>'; //出力に認識結果と解答を格納
-                tts.text = answer;
-                // 再生が終了（end）ときのイベントハンドラ（終了したときに実行される）
-                tts.onend = function(event){
-                    if(typeof webpage != 'undefined'){
-                        window.open(webpage);
-                    }
-                    asr.start(); // 音声認識を再開
-                }
-                speechSynthesis.speak(tts); // 再生
-            }
-            
-        
+            }            
+    	}
+	
+
+	    speechSynthesis.speak(tts); // 再生
     } else { // 結果がまだ未確定のとき
         output_not_final = '<span style="color:#ddd;">' + transcript + '</span>';
     }
-    resultOutput.innerHTML = output + output_not_final ;
+    resultOutput.innerHTML = output + output_not_final;
 }
 
 // 開始ボタンのイベントハンドラ
-
 startButton.addEventListener('click', function() {
     asr.start();
 })
