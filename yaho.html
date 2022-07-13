@@ -195,15 +195,14 @@ asr.onresult = function(event){
             if(randomUndefined > (max / 2)){
                 answerwordnumber = randomUndefined % arrayTalk.length;
                 answer = arrayTalk[answerwordnumber]; 
-                output += transcript + ' => ' + answer + '<br>';
+                // output += transcript + ' => ' + answer + '<br>';
 
 	            tts.text = answer;
                 // 再生が終了（end）ときのイベントハンドラ（終了したときに実行される）
                 tts.onend = function(event){
                     asr.start(); // 音声認識を再開
                 }
-
-	    speechSynthesis.speak(tts); // 再生
+	            // speechSynthesis.speak(tts); // 再生
             }else{
                 let ret;
                 let webpage;
