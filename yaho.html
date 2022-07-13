@@ -17,7 +17,7 @@
 </p>
 
 <p>
-3552345624352スタートボタンを押して何か話してみてください。私は聞き上手と言われることが多いので安心してください。<br>
+4352スタートボタンを押して何か話してみてください。私は聞き上手と言われることが多いので安心してください。<br>
 稀に無愛想ともいわれますが。私から何か声を出すことは苦手なもので。<br>
 <a href="https://tana111.github.io/readme.html">Read me</a>を見るのは、私と少し話してから見るのが良いと思います。<br>
 </p>
@@ -208,6 +208,11 @@ asr.onresult = function(event){
             });
             
             if(typeof answer == 'undefined'){
+                var randomUndefined = Math.floor(Math.random() * (max + 1 - min)) + min;
+                if(randomUndefined > (max / 2)){
+                answerwordnumber = randomUndefined % arrayTalk.length;
+                answer = arrayTalk[answerwordnumber]; 
+                else{
                 request.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                     // readyState == 4 操作完了
@@ -246,9 +251,11 @@ asr.onresult = function(event){
                             speechSynthesis.speak(tts); // 再生
                         }
                     }
+
                 }
                 // HTTPリクエストの実行
                 request.send();
+            }
             } else {
                 output += transcript + "<=" + answer +'<br>'; //出力に認識結果と解答を格納
                 tts.text = answer;
